@@ -67,5 +67,35 @@ app.put('/api/clinic/:id', (req, res) => {
     });
 });
 
+// delete data
+app.delete('/api/clinic/:id', (req, res) => {
+    // create sql query to search and delete
+    const querySearch = 'SELECT * FROM user WHERE id = ?';
+    const queryDelete = 'DELETE FROM user WHERE id = ?';
+
+    // running query to search data
+    connection.query(querySearch, req.params.id, (err, rows, field) => {
+        // error handling
+        if (err) {
+            return res.status(500).json({ message: 'Having problem', error: err });
+        }
+
+        // if id found on database
+        if (rows.length) {
+            // running query delete
+            connection.query(queryDelete, req.params.id, (err, rows, field) => {
+                // error handling
+                if (err) {
+                    return res.status(500).json({ message: 'Having problem', error: err });
+                }
+
+                res.status(200).json({ success: true, message: 'Delete succed' });
+            });
+        } else {
+            return res.status(404).json({ message: 'Data not found', success: false });
+        }
+    });
+});
+
 // create server
 app.listen(PORT, () => console.log(`Server running at port: ${PORT}`));
