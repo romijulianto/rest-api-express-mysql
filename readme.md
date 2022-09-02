@@ -18,7 +18,30 @@ patient
     "phone" number
 }
 ```
+Create Database
+```
+CREATE TABLE user (
+  id_user int(11) NOT NULL,
+  name varchar(100) NOT NULL,
+  age int NOT NULL,
+  birth_date date NOT NULL,
+  created_at DATETIME NOT NULL,
+  updated_at TIMESTAMP,
+  PRIMARY KEY (id_user)
+);
 
+CREATE TABLE patient (
+  id_patient int(11) NOT NULL,
+  id_user int(11) NOT NULL,
+  name varchar(100) NOT NULL,
+  address varchar(100) NOT NULL,
+  phone int NOT NULL,
+  created_at DATETIME NOT NULL,
+  updated_at TIMESTAMP,
+  PRIMARY KEY (id_patient),
+  FOREIGN KEY (id_user) REFERENCES user(id_user)
+);
+```
 ## Criteria Endpoint
 1. One user handled multiple user/patient.
 2. Verify name user/patient are unique.
@@ -31,7 +54,6 @@ patient
 8. Verify result only user/patient when method response API in operate.
 
 ## Criteria Endpoint
-
 ## Project setup
 ```
 npm install
