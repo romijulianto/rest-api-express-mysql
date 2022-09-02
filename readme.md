@@ -30,9 +30,13 @@ patient
 7. List endpoint patient and user from admin perspektif, where admin can view all user and patient, and search feature by name.
 8. Verify result only user/patient when method response API in operate.
 
+## Criteria Endpoint
+
 ## Project setup
 ```
 npm install
+npm install express mysql body-parser
+npm install express sequelize mysql2 cors --save
 ```
 
 ### Run
@@ -42,3 +46,4 @@ node server.js
 
 Project reference:
 > [Build Node.js Rest APIs with Express & MySQL](https://www.bezkoder.com/node-js-rest-api-express-mysql/)
+> [Membuat RESTful API Node JS + Express + MySQL (CRUD)](https://medium.com/chevalier-lab/membuat-restful-api-node-js-express-mysql-crud-c4a1512600b6)
