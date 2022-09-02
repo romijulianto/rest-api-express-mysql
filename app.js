@@ -27,13 +27,43 @@ app.post('/api/clinic', (req, res) => {
 app.get('/api/clinic', (req, res) => {
     const querySql = 'SELECT * FROM user';
 
-    koneksi.query(querySql, (err, rows, field) => {
+    connection.query(querySql, (err, rows, field) => {
         // error handling
         if (err) {
             return res.status(500).json({ message: 'Having problem', error: err });
         }
 
         res.status(200).json({ success: true, data: rows });
+    });
+});
+
+// update data
+app.put('/api/clinic/:id', (req, res) => {
+    // create variable to store data and query sql
+    const data = {...req.body };
+    const querySearch = 'SELECT * FROM user WHERE id = ?';
+    const queryUpdate = 'UPDATE user SET ? WHERE id = ?';
+
+    // query to searching data
+    connection.query(querySearch, req.params.id, (err, rows, field) => {
+        // error handling
+        if (err) {
+            return res.status(500).json({ message: 'Having problem', error: err });
+        }
+
+        // if id found on database
+        if (rows.length) {
+            connection.query(queryUpdate, [data, req.params.id], (err, rows, field) => {
+                // error handling
+                if (err) {
+                    return res.status(500).json({ message: 'Having problem', error: err });
+                }
+
+                res.status(200).json({ success: true, message: 'Updated data succed' });
+            });
+        } else {
+            return res.status(404).json({ message: 'Data not found', success: false });
+        }
     });
 });
 
