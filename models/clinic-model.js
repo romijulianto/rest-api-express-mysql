@@ -13,3 +13,15 @@ exports.insertUser = (response, querySql, data) => {
     });
 
 };
+
+// Create get function
+exports.getUser = (response, querySql) => {
+
+    connection.query(querySql, (err, rows, field) => {
+        // error handling
+        if (err) {
+            return response.status(500).json({ message: 'Having Problem', error: err });
+        }
+        responseData(response, 200, rows)
+    });
+};

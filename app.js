@@ -18,15 +18,6 @@ app.post('/api/clinic/user', (req, res) => {
 // read data / get data
 app.get('/api/clinic/user', (req, res) => {
     const querySql = 'SELECT * FROM user';
-
-    connection.query(querySql, (err, rows, field) => {
-        // error handling
-        if (err) {
-            return res.status(500).json({ message: 'Having problem', error: err });
-        }
-
-        res.status(200).json({ success: true, data: rows });
-    });
 });
 
 // update data
