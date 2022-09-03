@@ -16,7 +16,7 @@ exports.createData = (req, res, next) => {
 
 // get user clinic
 exports.readData = (req, res) => {
-    const querySql = 'SELECT * FROM bootcamp';
+    const querySql = 'SELECT * FROM user';
 
     getUser(res, querySql);
 };
@@ -25,19 +25,19 @@ exports.readData = (req, res) => {
 exports.updateData = (req, res) => {
     // create variable to store data dan querysql
     const data = {...req.body };
-    const querySearch = 'SELECT * FROM bootcamp WHERE id = ?';
-    const queryUpdate = 'UPDATE bootcamp SET ? WHERE id = ?';
+    const querySearch = 'SELECT * FROM user WHERE id_user = ?';
+    const queryUpdate = 'UPDATE user SET ? WHERE id_user = ?';
 
     // insert into method model
-    updateUser(res, querySearch, queryUpdate, req.params.id, data);
+    updateUser(res, querySearch, queryUpdate, req.params.id_user, data);
 };
 
 // delete user clinic
 exports.deleteData = (req, res) => {
     // create variable to store data dan querysql
-    const querySearch = 'SELECT * FROM bootcamp WHERE id = ?';
-    const queryDelete = 'DELETE FROM bootcamp WHERE id = ?';
+    const querySearch = 'SELECT * FROM user WHERE id_user = ?';
+    const queryDelete = 'DELETE FROM user WHERE id_user = ?';
 
     // insert into method model
-    deleteUser(res, querySearch, queryDelete, req.params.id);
+    deleteUser(res, querySearch, queryDelete, req.params.id_user);
 };

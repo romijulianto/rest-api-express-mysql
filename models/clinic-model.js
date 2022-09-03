@@ -26,18 +26,18 @@ exports.getUser = (response, querySql) => {
     });
 };
 
-// update data bootcamp
-exports.updateuser = (response, querySearch, queryUpdate, id, data) => {
+// update data user
+exports.updateUser = (response, querySearch, queryUpdate, id_user, data) => {
     // query to searching data
-    connection.query(querySearch, id, (err, rows, field) => {
+    connection.query(querySearch, id_user, (err, rows, field) => {
         // error handling
         if (err) {
             return response.status(500).json({ message: 'Having problem', error: err });
         }
 
-        // if id found on database
+        // if id_user found on database
         if (rows.length) {
-            connection.query(queryUpdate, [data, id], (err, rows, field) => {
+            connection.query(queryUpdate, [data, id_user], (err, rows, field) => {
                 // error handling
                 if (err) {
                     return response.status(500).json({ message: 'Having problem', error: err });
@@ -50,26 +50,25 @@ exports.updateuser = (response, querySearch, queryUpdate, id, data) => {
     });
 };
 
-// delete bootcamp
-exports.deleteUser = (response, querySearch, queryDelete, id) => {
+// delete user
+exports.deleteUser = (response, querySearch, queryDelete, id_user) => {
 
     // running query to search data
-    connection.query(querySearch, id, (err, rows, field) => {
+    connection.query(querySearch, id_user, (err, rows, field) => {
         // error handling
         if (err) {
             return response.status(500).json({ message: 'Having problem', error: err });
         }
 
-        // if id found on database
+        // if id_user found on database
         if (rows.length) {
             // running query delete
-            connection.query(queryDelete, req.params.id, (err, rows, field) => {
+            connection.query(queryDelete, id_user, (err, rows, field) => {
                 // error handling
                 if (err) {
                     return response.status(500).json({ message: 'Having problem', error: err });
                 }
 
-                // jika delete berhasil
                 responseMessage(response, 200, 'Delete succed');
             });
         } else {
