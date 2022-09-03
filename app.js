@@ -9,11 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // create data / insert data
-app.post('/api/clinic/user', (req, res) => {
-    // create variable to store data
-    const data = {...req.body };
-    const querySql = 'INSERT INTO user SET ?';
-});
+app.post('/api/clinic/user', (req, res) => {});
 
 // read data / get data
 app.get('/api/clinic/user', (req, res) => {
@@ -26,28 +22,6 @@ app.put('/api/clinic/:id', (req, res) => {
     const data = {...req.body };
     const querySearch = 'SELECT * FROM user WHERE id = ?';
     const queryUpdate = 'UPDATE user SET ? WHERE id = ?';
-
-    // query to searching data
-    connection.query(querySearch, req.params.id, (err, rows, field) => {
-        // error handling
-        if (err) {
-            return res.status(500).json({ message: 'Having problem', error: err });
-        }
-
-        // if id found on database
-        if (rows.length) {
-            connection.query(queryUpdate, [data, req.params.id], (err, rows, field) => {
-                // error handling
-                if (err) {
-                    return res.status(500).json({ message: 'Having problem', error: err });
-                }
-
-                res.status(200).json({ success: true, message: 'Updated data succed' });
-            });
-        } else {
-            return res.status(404).json({ message: 'Data not found', success: false });
-        }
-    });
 });
 
 // delete data
@@ -56,28 +30,6 @@ app.delete('/api/clinic/:id', (req, res) => {
     const querySearch = 'SELECT * FROM user WHERE id = ?';
     const queryDelete = 'DELETE FROM user WHERE id = ?';
 
-    // running query to search data
-    connection.query(querySearch, req.params.id, (err, rows, field) => {
-        // error handling
-        if (err) {
-            return res.status(500).json({ message: 'Having problem', error: err });
-        }
-
-        // if id found on database
-        if (rows.length) {
-            // running query delete
-            connection.query(queryDelete, req.params.id, (err, rows, field) => {
-                // error handling
-                if (err) {
-                    return res.status(500).json({ message: 'Having problem', error: err });
-                }
-
-                res.status(200).json({ success: true, message: 'Delete succed' });
-            });
-        } else {
-            return res.status(404).json({ message: 'Data not found', success: false });
-        }
-    });
 });
 
 // create server
