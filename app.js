@@ -9,22 +9,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // create data / insert data
-app.post('/api/clinic', (req, res) => {
-    // buat variabel penampung data dan query sql
+app.post('/api/clinic/user', (req, res) => {
+    // create variable to store data
     const data = {...req.body };
     const querySql = 'INSERT INTO user SET ?';
-
-    connection.query(querySql, data, (err, rows, field) => {
-        // error handling
-        if (err) {
-            return res.status(500).json({ message: 'Failed to insert', error: err });
-        }
-        res.status(201).json({ success: true, message: 'Insert succed' });
-    });
 });
 
 // read data / get data
-app.get('/api/clinic', (req, res) => {
+app.get('/api/clinic/user', (req, res) => {
     const querySql = 'SELECT * FROM user';
 
     connection.query(querySql, (err, rows, field) => {
