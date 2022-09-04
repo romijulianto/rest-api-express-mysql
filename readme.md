@@ -70,3 +70,7 @@ Project reference:
 > [Build Node.js Rest APIs with Express & MySQL](https://www.bezkoder.com/node-js-rest-api-express-mysql/)
 
 > [Membuat RESTful API Node JS + Express + MySQL (CRUD)](https://medium.com/chevalier-lab/membuat-restful-api-node-js-express-mysql-crud-c4a1512600b6)
+
+> [Membuat RESTful API Dengan Express.js, Sequelize.js dan PostgreSQL](https://medium.com/@nico26deo/membuat-restful-api-dengan-express-js-sequelize-js-dan-postgresql-cb14d045cefd)
+
+> [Membuat Autentikasi JWT pada RESTful API dengan Express.js, Sequelize.js](https://medium.com/@nico26deo/membuat-autentikasi-jwt-pada-restful-api-dengan-express-js-sequelize-js-da623653abdd)
